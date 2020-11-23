@@ -1,0 +1,401 @@
+﻿{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+
+    <meta name="description" content="Image colorizaton is a HTML landing page built with Bootstrap to help people to build life to their old memories.">
+    <meta name="author" content="Image colorization">
+
+	<meta property="og:site_name" content="" /> <!-- website name -->
+	<meta property="og:site" content="" /> <!-- website link -->
+	<meta property="og:title" content=""/> <!-- title shown in the actual shared post -->
+	<meta property="og:description" content="" /> <!-- description shown in the actual shared post -->
+	<meta property="og:image" content="" /> <!-- image link, make sure it's jpg -->
+	<meta property="og:url" content="" /> <!-- where do you want your post to link to -->
+	<meta property="og:type" content="article" />
+     <!-- Website Title -->
+    <title>Image Colorization</title>
+    <!-- Styles -->
+    <link href="{% static 'https://fonts.googleapis.com/css?family=Montserrat:500,700&display=swap&subset=latin-ext' %}" rel="stylesheet">
+    <link href="{% static 'https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600&display=swap&subset=latin-ext' %}" rel="stylesheet">
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet ">
+    <link href="{% static 'css/fontawesome-all.css' %}" rel="stylesheet">
+    <link href="{% static 'css/swiper.css' %}" rel="stylesheet">
+	<link href="{% static 'css/magnific-popup.css' %}" rel="stylesheet">
+	<link href="{% static 'css/styles.css' %}" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.css">
+	
+	<!-- Favicon  -->
+    <link rel="icon" href="{% static 'images/favicon.png' %}">
+</head>
+<body data-spy="scroll" data-target=".fixed-top">
+    
+    <!-- Preloader -->
+	
+    <!-- end of preloader -->
+    
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-md navbar-dark navbar-custom fixed-top bg-dark">
+
+        <a href="#"><h1>Image Colorization</h1></a>
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link page-scroll" href="#header">HOME <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link page-scroll" href="#intro">INTRO</a>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link page-scroll" href="#samplepics">SAMPLE PICTURES</a>
+                </li>
+      
+                <li class="nav-item ">
+                    <a class="nav-link page-scroll" href="#about" >ABOUT</a>                    
+                </li>
+            
+
+                <li class="nav-item">
+                    <a class="nav-link page-scroll" href="#contact">CONTACT</a>
+                </li>
+            </ul>
+            <span class="nav-item social-icons">
+                <span class="fa-stack">
+                    <a href="https://github.com/Image-6/Project">
+                        <span class="hexagon"></span>
+                        <i class="fab fa-github fa-stack-1x"></i>
+                    </a>
+                </span>
+                
+                
+            </span>
+        </div>
+    </nav>
+    <!-- end of navbar -->
+
+
+    <!-- Header -->
+    <header id="header" class="header">
+        <div class="header-content">
+            <div class="container">
+            
+                <div class="row">
+                    <div class="col-lg-15">
+                        <div class="text-container">
+                            <h1>IMAGE COLORIZATION</h1>
+                            <p class="p-heading p-large">Bring life in your old memories.</p>
+          <section class="green-grad-background hero">
+		            <div class="container" id="content">
+			 <div class="row">
+			 <div class="col-lg-12">
+			    <h5 >Use Convolutionary Neural Network To Colorize Black and White Photos</h5>
+                <form action="{% url 'upload' %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    
+                  <div class="form-group d-flex">
+                          
+                    <input type="file" class="form-control" placeholder="Enter the grayscale image" name="uploaded_image">
+                    <input type="submit" class="btn btn-primary text-white px-4" value="Upload">
+
+                  </div>
+                </form>
+	     </div>
+
+	</section>
+                        </div>
+                    </div> 
+                </div>         
+         </div> 
+      </div> 
+    </header> <!-- end of header -->
+    <!--input and output images-->
+    <div class="basic-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    {% if uploaded_file_url %}
+                    <h1 align="center" >Photo colorization before and after:</h1>
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="grid">
+
+                    <!-- Team Member -->
+                    <div class="io-images">
+                        <div class="image-wrapper" style="height: 400px !important; width:500px !important; ">
+                            <a href="{{ uploaded_file_url }}">
+                            <img class="img-fluid" src="{{ uploaded_file_url }}" alt="alternative" style="height: 100% !important;
+                            width:100% !important;">
+                                </a>
+                        </div>
+                        <p class="p-large">Input Image</p>
+                    </div>
+                    {% endif %}
+                    {% if result_file_url %}
+                    <div class="io-images">
+                        <div class="image-wrapper" style="height: 400px !important; width:500px !important; ">
+                            <a href="{{ result_file_url }}">
+                            <img class="img-fluid" src="{{ result_file_url}}" alt="alternative" style="height: 100% !important;
+                            width:100% !important;">
+                            </a>
+                        </div>
+                        <p class="p-large">Output Image</p>
+                    </div>
+                    {% endif %}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+     </div>
+
+
+
+    <!-- Intro -->
+
+    <div id="intro" class="basic-1">
+        {% for i in intro %}
+
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-5">
+
+
+                    <div class="text-container">
+                        <div class="section-title">INTRO</div>
+                        <h2>{{ i.topic }}</h2>
+                        <p>{{i.description}}</p>
+                        <p class="testimonial-text">"Our mission here at Image Colorization is to get you through those memories that you always wanted to keep safe and sound ."</p>
+
+                
+                    </div> <!-- end of text-container -->
+                </div> <!-- end of col -->
+                <div class="col-lg-7">
+                    <div class="image-container">
+                        <img class="img-fluid" src="{{i.i_image.url }}" alt="alternative" style="height:500px width:350px">
+                    </div> <!-- end of image-container -->
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+        {% endfor %}
+    </div> <!-- end of basic-1 -->
+    <!-- end of intro -->
+
+
+
+
+
+   
+   
+
+
+    <!-- Projects -->
+	<div id="samplepics" class="filter">
+		<div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title">Colorized Images</div>
+                    <h2>Some samples of pictures:</h2>
+                </div> 
+            </div> 
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- Filter -->
+
+
+                    <div class="grid">
+                        <div class="element-item development">
+                            <a class="lightbox" href="{% static 'images/flower1.jpg' %}"><div class="element-item-overlay"><span></div><img src="{% static 'images/flower1.jpg' %}" alt="alternative"></a>
+                        </div>
+                        <div class="element-item development">
+                            <a class="lightbox" href="{% static 'images/flower2.jpeg' %}"><div class="element-item-overlay"></div><img src="{% static 'images/flower2.jpeg' %}" alt="alternative"></a>
+                        </div>
+                        <div class="element-item design development marketing">
+                            <a class="lightbox" href="{% static 'images/fruit1.jpg' %}"><div class="element-item-overlay"></div><img src="{% static 'images/fruit1.jpg' %}" alt="alternative"></a>
+                        </div>
+                        <div class="element-item design development marketing">
+                            <a class="lightbox" href="{% static 'images/flower3.jpg' %}"><div class="element-item-overlay"></div><img src="{% static 'images/flower3.jpg' %}" alt="alternative"></a>
+                        </div>
+
+                        
+                    </div>
+                    
+                    
+                </div>
+            </div> 
+		</div>
+    </div> 
+    
+
+
+    <div id="projects" class="filter">
+		<div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title">HOW IT WORKS?</div>
+                    <h2>The source code for this image colorization project is in <a href="https://github.com/Image-6/Project">Github</a>. Just click on the link and get the code.</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Team -->
+    <div class="basic-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>Our Team</h2>
+                    <p class="p-heading">We're  as strong and as knowledgeable as our team.</p>
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <!-- Team Member -->
+                    {% for t in team %}
+                    <div class="team-member">
+                        <div class="image-wrapper">
+                            <img class="img-fluid" src="{{t.image.url}}" alt="alternative" style="height: 100% !important;
+                            width:100% !important;">
+                        </div>
+                        <p class="p-large">{{t.name}}</p>
+                        <p class="job-title">{{t.roll_no}}</p>
+                        <span class="fa-stack">
+                            <a href="{{t.facebook_url}}">
+                                <span class="hexagon"></span>
+                                <i class="fab fa-facebook-f fa-stack-1x"></i>
+                            </a>
+                        </span>
+                        <span class="fa-stack">
+                            <a href="{{t.github_url}}">
+                                <span class="hexagon"></span>
+                                <i class="fab fa-github fa-stack-1x"></i>
+                            </a>
+                        </span>
+                        <span class="fa-stack">
+                            <a href="{{t.linkedin_url}}">
+                                <span class="hexagon"></span>
+                                <i class="fab fa-linkedin-in fa-stack-1x"></i>
+                            </a>
+                        </span>
+                        
+                    </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div> 
+     </div> 
+    <!-- end of team -->
+
+
+    <!-- About -->
+
+    <div id="about" class="counter">
+        {% for a in a_us %}
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-xl-6">
+                    <div class="image-container">
+                        <img class="img-fluid" src="{{ a.a_image.url}}" alt="alternative" style="height:250px important! width:500px imporatnt!">
+                    </div> 
+                </div>
+                <div class="col-lg-7 col-xl-6">
+                    <div class="text-container">
+                        <div class="section-title">ABOUT</div>
+                        <h2>We're Passionate About Delivering colourful quality photos </h2>
+                        <p>{{ a.description}}</p>
+                    </div>     
+                </div>
+            </div>
+        </div>
+        {% endfor%}
+    </div> 
+
+    <!-- Contact -->
+
+    <div id="contact" class="form-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="text-container">
+                        <div class="section-title">CONTACT</div> 
+                        <ul class="list-unstyled li-space-lg">
+                            <li class="address"><i class="fas fa-map-marker-alt"></i>Putalisadak , Kathmandu , NEPAL</li>
+                            <li><i class="fas fa-phone"></i>+977 9860008306</a></li>
+                            <li><i class="fas fa-phone"></i>+977 9812281281</a></li>
+                            <li><i class="fas fa-envelope"></i><a href="mailto:office@image.com">imagecolorization6@gmail.com</a></li>
+                        </ul>
+                       <h2>Get In Touch By Finding Us On The  Platforms</h2>
+                        
+                        <span class="fa-stack">
+                            <a href="https://github.com/Image-6/Project">
+                                <span class="hexagon"></span>
+                                <i class="fab fa-github fa-stack-1x"></i>
+                            </a>
+                        </span>
+                        
+                        
+                       
+                    </div> 
+                </div> 
+                <div class="col-lg-6">
+                    <div class="text-container">
+                        <div class="section-title">MAP</div>
+                        <iframe style="width:100%; height:350px" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q=putalisadak&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe>
+                    </div>
+                </div>
+            </div> 
+        </div> 
+    </div>
+    <!-- end of contact -->
+
+
+
+      
+
+
+
+    <!-- Copyright -->
+    <div class="copyright">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <p class="p-small">Copyright © 2020</p>
+                </div> <!-- end of col -->
+            </div> <!-- enf of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of copyright --> 
+    <!-- end of copyright -->
+    
+    	
+    <!-- Scripts -->
+    <script src="js/jquery.min.js"></script> <!-- jQuery for Bootstrap's JavaScript plugins -->
+    <script src="js/popper.min.js"></script> <!-- Popper tooltip library for Bootstrap -->
+    <script src="js/bootstrap.min.js"></script> <!-- Bootstrap framework -->
+    <script src="js/jquery.easing.min.js"></script> <!-- jQuery Easing for smooth scrolling between anchors -->
+    <script src="js/swiper.min.js"></script> <!-- Swiper for image and text sliders -->
+    <script src="js/jquery.magnific-popup.js"></script> <!-- Magnific Popup for lightboxes -->
+    <script src="js/morphext.min.js"></script> <!-- Morphtext rotating text in the header -->
+    <script src="js/isotope.pkgd.min.js"></script> <!-- Isotope for filter -->
+    <script src="js/validator.min.js"></script> <!-- Validator.js - Bootstrap plugin that validates forms -->
+    <script src="js/scripts.js"></script> <!-- Custom scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.js"></script>
+    <script>
+    baguetteBox.run('.grid');
+    </script>
+
+
+
+</body>
+</html>
